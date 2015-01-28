@@ -17,7 +17,7 @@ class Symphony < Formula
 
   def install
     args = ["--disable-debug", "--disable-dependency-tracking",
-            "--enable-dependency-linking", "--enable-shared=yes",
+            "--enable-shared=yes",
             "--enable-gnu-packages", "--prefix=#{prefix}"]
 
     if build.with? "readline"
@@ -43,7 +43,6 @@ class Symphony < Formula
     system "./configure",  *args
     system "make"
     system "make", "test" if build.with? "check"
-    system "make", "fulltest" if build.with? "check"
     ENV.deparallelize
     system "make install"
 
